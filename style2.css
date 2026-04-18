@@ -1,0 +1,474 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400&display=swap');
+
+:root {
+  --nude: #F5EBE0;
+  --soft-nude: #EFD9C1;
+  --gold: #C5A059;
+  --black: #1A1A1A;
+  --white: #FFFFFF;
+  --deep-taupe: #8A7A68;
+  --dim: rgba(26, 26, 26, 0.5); /* Semi-transparent dark */
+  
+  --font-sans: 'Inter', sans-serif;
+  --font-serif: 'Playfair Display', serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5 { font-family: var(--font-serif); font-weight: 500; }
+a { text-decoration: none; color: inherit; }
+.text-gold { color: var(--gold) !important; }
+
+/* Buttons */
+.btn-outline {
+  display: inline-block;
+  padding: 18px 40px;
+  border: 1px solid var(--black);
+  border-radius: 0;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  transition: all 0.4s ease;
+  background: transparent;
+  color: var(--black);
+  cursor: pointer;
+}
+
+.btn-outline:hover {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-solid {
+  display: inline-block;
+  padding: 18px 40px;
+  background: var(--black);
+  color: var(--white);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  transition: all 0.4s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-solid:hover {
+  background: var(--gold);
+  color: var(--white);
+}
+
+/* Minimalist Nav */
+nav {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 5%;
+  z-index: 100;
+  transition: background 0.4s ease, padding 0.4s ease;
+}
+
+nav.scrolled {
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(10px);
+  padding: 20px 5%;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+.logo {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  letter-spacing: 4px;
+}
+
+.nav-right {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.8rem;
+}
+
+.nav-links a { transition: color 0.3s; }
+.nav-links a:hover { color: var(--gold); }
+
+/* Cinematic Hero */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: url('assets/images/bento-lifestyle.png') center/cover no-repeat;
+  /* Light overlay instead of dark */
+  box-shadow: inset 0 0 0 1000px rgba(245, 235, 224, 0.7);
+  z-index: 0;
+  transform: scale(1.05); 
+}
+
+.hero-content {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  width: 100%;
+}
+
+.hero-main-title {
+  font-size: clamp(4rem, 12vw, 10rem);
+  line-height: 0.9;
+  letter-spacing: -2px;
+  margin-bottom: 20px;
+  color: var(--black);
+}
+
+.hero-main-title i { color: var(--gold); }
+
+.hero-meta {
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 50px;
+  width: 90%;
+  left: 5%;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.75rem;
+  color: var(--black);
+  font-weight: 600;
+}
+
+/* Brutalist Marquee */
+.marquee-container {
+  background: var(--soft-nude);
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0,0,0,0.05);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-flex;
+  gap: 20px;
+  animation: marquee 20s linear infinite;
+}
+
+.marquee-content span {
+  font-family: var(--font-serif);
+  font-size: 2.5rem;
+  color: var(--gold);
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Editorial Menu - List Format */
+.menu-section {
+  padding: 150px 5%;
+  background: var(--white);
+  position: relative;
+  color: var(--black);
+}
+
+.section-label {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-bottom: 40px;
+  display: block;
+  border-left: 2px solid var(--gold);
+  padding-left: 20px;
+}
+
+.editorial-list {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 2;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+
+.menu-item:hover {
+  transform: translateX(20px);
+  border-bottom-color: var(--gold);
+}
+
+.menu-title {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 5vw, 4.5rem);
+  color: var(--black);
+}
+
+.menu-price {
+  font-family: var(--font-sans);
+  font-size: 1.2rem;
+  color: var(--deep-taupe);
+}
+
+.menu-item:hover .menu-title { color: var(--gold); }
+.menu-item:hover .menu-price { color: var(--black); }
+
+/* Hover Image Reveal */
+#hover-image {
+  position: fixed;
+  top: 50%; right: 10%;
+  transform: translateY(-50%);
+  width: 400px; height: 500px;
+  object-fit: cover;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease, transform 0.6s ease;
+  z-index: 10;
+  border-radius: 0;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+  background: var(--white); /* So IV bags pop purely */
+}
+
+/* Stark Brutalist Splital Layout */
+.manifesto {
+  display: flex;
+  min-height: 80vh;
+  background: var(--nude);
+  color: var(--black);
+}
+
+.manifesto-left, .manifesto-right {
+  flex: 1;
+  padding: 120px 8%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.manifesto-left {
+  border-right: 1px solid rgba(0,0,0,0.1);
+}
+
+.manifesto-img {
+  width: 100%;
+  height: 60vh;
+  object-fit: cover;
+  filter: grayscale(100%);
+}
+
+.manifesto-quote {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+  margin-bottom: 40px;
+}
+
+.manifesto-text {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--deep-taupe);
+  max-width: 500px;
+}
+
+/* Stat Grid */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  background: var(--soft-nude);
+  color: var(--black);
+}
+
+.stat-item {
+  padding: 80px 40px;
+  text-align: center;
+  border-right: 1px solid rgba(0,0,0,0.05);
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.stat-item:last-child { border-right: none; }
+
+.stat-item h3 {
+  font-size: clamp(3rem, 5vw, 4rem);
+  margin-bottom: 10px;
+  line-height: 1;
+  color: var(--gold);
+}
+
+.stat-item p {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.8rem;
+  color: var(--deep-taupe);
+}
+
+/* Brutalist FAQ */
+.editorial-faq {
+  padding: 120px 5%;
+  background: var(--white);
+  color: var(--black);
+}
+
+.faq-accordion {
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+.faq-card {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+
+.faq-head {
+  padding: 40px 0;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.faq-head:hover { color: var(--gold); }
+.faq-head.active { color: var(--gold); }
+
+.faq-head i {
+  font-size: 1.2rem;
+  transition: transform 0.4s ease;
+  color: var(--deep-taupe);
+}
+
+.faq-head.active i { transform: rotate(45deg); color: var(--gold); }
+
+.faq-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.faq-body p {
+  padding-bottom: 40px;
+  color: var(--deep-taupe);
+  font-size: 1.1rem;
+  line-height: 1.8;
+  max-width: 800px;
+}
+
+/* Stark Booking */
+.booking-block {
+  padding: 150px 5%;
+  background: var(--nude);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.huge-cta {
+  font-family: var(--font-serif);
+  font-size: clamp(3rem, 10vw, 8rem);
+  color: rgba(0,0,0,0.03); /* White version watermark */
+  margin-bottom: -60px;
+  user-select: none;
+}
+
+.book-form {
+  max-width: 600px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  background: var(--white);
+  padding: 60px;
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 40px 80px rgba(0,0,0,0.05);
+}
+
+.input-line {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(0,0,0,0.2);
+  padding: 15px 0;
+  color: var(--black);
+  font-family: var(--font-sans);
+  font-size: 1.1rem;
+  margin-bottom: 30px;
+}
+
+.input-line:focus {
+  outline: none;
+  border-bottom-color: var(--gold);
+}
+
+.input-line::placeholder { color: var(--dim); }
+
+/* Editorial Footer */
+.editorial-footer {
+  background: var(--white);
+  padding: 120px 5% 40px;
+  color: var(--black);
+  border-top: 1px solid rgba(0,0,0,0.05);
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 80px;
+}
+
+.footer-bottom {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(0,0,0,0.05);
+  padding-top: 30px;
+  color: var(--deep-taupe);
+  font-size: 0.85rem;
+}
+
+.footer-bottom a {
+  color: var(--black);
+  font-size: 1.2rem;
+}
+
+.footer-bottom a:hover { color: var(--gold); }
+
+@media(max-width: 900px) {
+  .manifesto { flex-direction: column; }
+  .manifesto-left { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); }
+  .nav-right { display: none; }
+  #hover-image { display: none !important; }
+  .stat-grid { grid-template-columns: 1fr; }
+  .stat-item { border-right: none; border-bottom: 1px solid rgba(0,0,0,0.1); padding: 50px 20px; }
+  .footer-grid { grid-template-columns: 1fr; }
+}

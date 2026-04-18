@@ -1,0 +1,739 @@
+/* Noma Aesthetics & Wellness - Ultra Premium Design System */
+:root {
+  --primary-beige: #f5ebe0;
+  --soft-nude: #fdfaf7;
+  --taupe: #bfa89e;
+  --deep-taupe: #4a3f35;
+  --gold: #c5a059;
+  --gold-light: #d4af37;
+  --white: #ffffff;
+  --black: #1a1a1a;
+  
+  --glass-bg: rgba(255, 255, 255, 0.75);
+  --glass-border: rgba(255, 255, 255, 0.4);
+  
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Inter', sans-serif;
+  
+  --section-padding: 120px 8%;
+  --transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: initial; /* For GSAP */
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--soft-nude);
+  color: var(--deep-taupe);
+  line-height: 1.7;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+em {
+  font-style: italic;
+  font-family: 'Playfair Display';
+  font-weight: 400;
+}
+
+/* Typography Helpers */
+.text-gold { color: var(--gold); }
+.uppercase { text-transform: uppercase; letter-spacing: 4px; font-size: 0.75rem; font-weight: 600; margin-bottom: 20px; display: block; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 40px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.85rem;
+  transition: var(--transition);
+  cursor: pointer;
+  border: none;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary {
+  background-color: var(--deep-taupe);
+  color: var(--white);
+}
+
+.btn-primary::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: -1;
+}
+
+.btn-primary:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.btn-outline {
+  background-color: transparent;
+  border: 1.5px solid var(--gold);
+  color: var(--gold);
+}
+
+.btn-outline:hover {
+  background-color: var(--gold);
+  color: var(--white);
+}
+
+/* Navigation */
+nav {
+  position: fixed;
+  top: 0; left: 0; width: 100%;
+  padding: 30px 8%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+  transition: var(--transition);
+}
+
+nav.scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  padding: 20px 8%;
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--deep-taupe);
+  text-decoration: none;
+  letter-spacing: 3px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 50px;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--deep-taupe);
+  font-weight: 500;
+  font-size: 0.85rem;
+  transition: var(--transition);
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; left: 0; width: 0%; height: 1.5px;
+  background: var(--gold);
+  transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding: 0 8%;
+  background-color: var(--primary-beige);
+  overflow: hidden; /* Added to prevent bg-text overflow */
+}
+
+.hero-bg-text {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: min(25vw, 600px); /* Constrained size */
+  font-family: var(--font-heading);
+  color: rgba(0,0,0,0.03);
+  white-space: nowrap;
+  pointer-events: none;
+  font-weight: 900;
+  z-index: 1;
+}
+
+.hero-content {
+  width: 58%;
+  z-index: 5;
+  position: relative;
+  padding-right: 60px; /* Space before image overlap */
+}
+
+.hero-content h1 {
+  font-size: clamp(3.5rem, 8vw, 6.8rem);
+  line-height: 0.95;
+  margin-bottom: 40px;
+  letter-spacing: -0.03em;
+}
+
+.hero-content h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.hero-content p {
+  font-size: 1.25rem;
+  max-width: 550px;
+  margin-bottom: 60px;
+  line-height: 1.8;
+  opacity: 0.8;
+  color: var(--deep-taupe);
+}
+
+.hero-btns {
+  display: flex;
+  gap: 25px;
+  align-items: center;
+}
+
+.hero-image-v2 {
+  position: absolute;
+  right: 0; top: 0;
+  width: 40%; height: 100%;
+  clip-path: polygon(20% 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+.hero-image-v2 img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+}
+
+/* Bento Grid Section - UX Pro Max Refinement */
+.bento-section {
+  padding: var(--section-padding);
+  position: relative;
+  z-index: 2;
+  background-color: var(--primary-beige);
+  overflow: hidden;
+}
+
+.bento-section::before {
+  content: '';
+  position: absolute;
+  top: -20%; right: -10%;
+  width: 700px; height: 700px;
+  background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: -1;
+}
+
+.bento-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 420px);
+  gap: 30px;
+  margin-top: 80px;
+  grid-template-areas: 
+    "glow glow nad visual"
+    "stat science science visual";
+}
+
+.bento-item {
+  position: relative;
+  border-radius: 40px;
+  overflow: hidden;
+  background-color: var(--white);
+  transition: all 0.7s cubic-bezier(0.19, 1, 0.22, 1);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(0,0,0,0.03);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.03);
+}
+
+.bento-item:hover {
+  transform: translateY(-12px) scale(1.01);
+  box-shadow: 0 50px 100px rgba(0,0,0,0.1);
+  border-color: rgba(197, 160, 89, 0.4);
+}
+
+.bento-item img {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: transform 2s cubic-bezier(0.19, 1, 0.22, 1), filter 0.8s ease;
+  filter: brightness(0.9);
+}
+
+.bento-item:hover img {
+  transform: scale(1.08);
+  filter: brightness(0.8);
+}
+
+.bento-content {
+  position: absolute;
+  bottom: 0; left: 0; width: 100%;
+  padding: 50px;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.3) 60%, transparent 100%);
+  color: var(--white);
+  z-index: 3;
+}
+
+.bento-content h3 {
+  font-family: var(--font-heading);
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+.bento-content p {
+  opacity: 0.8;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  max-width: 90%;
+  font-weight: 300;
+}
+
+/* Specific Bento Cards */
+.bento-2 {
+  background: var(--white) !important;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 60px;
+}
+
+.bento-2 h3 { color: var(--gold); }
+.bento-2 p { color: var(--deep-taupe); opacity: 0.7; }
+
+.bento-4 .stat-box {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  border: 1px solid rgba(255,255,255,0.7);
+}
+
+.bento-4 h2 {
+  font-size: 5.5rem;
+  color: var(--gold);
+  line-height: 0.9;
+  margin-bottom: 15px;
+  font-weight: 900;
+  letter-spacing: -3px;
+}
+
+.bento-1 { grid-area: glow; }
+.bento-2 { grid-area: nad; }
+.bento-3 { grid-area: visual; }
+.bento-4 { grid-area: stat; }
+.bento-5 { grid-area: science; }
+
+/* Marquee / Infusion Menu */
+.marquee-container {
+  background: var(--deep-taupe);
+  padding: 40px 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee-content {
+  display: inline-block;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee-content span {
+  font-family: var(--font-heading);
+  font-size: 3rem;
+  color: var(--white);
+  margin-right: 60px;
+  font-style: italic;
+  opacity: 0.3;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Info Cards - Parallax Style */
+.para-section {
+  padding: var(--section-padding);
+  display: flex;
+  gap: 100px;
+  align-items: center;
+}
+
+.para-image {
+  flex: 1;
+  height: 600px;
+  overflow: hidden;
+  border-radius: 40px;
+}
+
+.para-content {
+  flex: 1;
+}
+
+/* FAQ Section */
+#faq {
+  padding: var(--section-padding);
+  background-color: var(--white);
+}
+
+.faq-container {
+  max-width: 800px;
+  margin: 60px auto 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.faq-item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding: 10px 0;
+  transition: var(--transition);
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 0;
+  cursor: pointer;
+  font-family: var(--font-heading);
+  font-weight: 600;
+  font-size: 1.25rem;
+  transition: var(--transition);
+  gap: 20px;
+}
+
+.faq-question span {
+  flex: 1;
+}
+
+.faq-question i {
+  font-size: 0.9rem;
+  color: var(--gold);
+  transition: transform 0.3s ease;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0, 1, 0, 1);
+  opacity: 0;
+}
+
+.faq-item.active .faq-answer {
+  max-height: 500px;
+  opacity: 1;
+  padding-bottom: 30px;
+  transition: all 0.5s cubic-bezier(1, 0, 1, 0);
+}
+
+.faq-answer p {
+  line-height: 1.8;
+  color: var(--deep-taupe);
+  font-size: 1rem;
+  max-width: 90%;
+}
+
+.faq-item:last-child {
+  border-bottom: none;
+}
+
+.faq-item:hover .faq-question {
+  color: var(--gold);
+}
+
+/* Booking Section */
+#book {
+  padding: var(--section-padding);
+  background-color: var(--soft-nude);
+}
+
+.booking-section {
+  background-color: var(--white);
+  border-radius: 40px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.booking-form {
+  flex: 1;
+  padding: 60px;
+}
+
+.booking-info {
+  flex: 1;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px;
+  color: var(--white);
+}
+
+.booking-info::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.booking-info h2, .booking-info p {
+  position: relative;
+  z-index: 2;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%;
+  padding: 18px 25px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,0.1);
+  background: var(--soft-nude);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
+  color: var(--deep-taupe);
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: var(--gold);
+  background: var(--white);
+}
+
+/* Product Cards */
+.products-section {
+  padding: 120px 8%;
+  background-color: var(--white);
+}
+
+.product-carousel {
+  padding-bottom: 60px !important;
+  margin-top: 60px;
+  overflow: visible !important; /* Allow card hover lift to show */
+}
+
+.swiper-button-next, .swiper-button-prev {
+  color: var(--gold) !important;
+  background: var(--white);
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+  transition: var(--transition);
+}
+
+.swiper-button-next:after, .swiper-button-prev:after {
+  font-size: 1.2rem !important;
+  font-weight: bold;
+}
+
+.swiper-button-next:hover, .swiper-button-prev:hover {
+  background: var(--gold);
+  color: var(--white) !important;
+}
+
+.swiper-pagination-bullet-active {
+  background: var(--gold) !important;
+}
+
+.product-card {
+  height: 100%; /* Ensure all cards in slider are same height */
+  background: var(--soft-nude);
+  border-radius: 40px;
+  padding: 40px;
+  text-align: left;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+  border: 1px solid transparent;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  border-color: var(--gold);
+  background: var(--white);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.product-img {
+  width: 100%;
+  height: 250px;
+  object-fit: contain;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  background-color: var(--white); /* Added background to make radius visible */
+}
+
+.product-card h3 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+}
+
+.product-price {
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--gold);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.product-desc {
+  font-size: 0.9rem;
+  opacity: 0.7;
+  margin-bottom: 25px;
+  line-height: 1.6;
+}
+
+.product-features {
+  list-style: none;
+  margin-bottom: 30px;
+  flex-grow: 1;
+}
+
+.product-features li {
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.product-features i {
+  color: var(--gold);
+  font-size: 0.8rem;
+}
+
+/* Footer */
+footer {
+  padding: 100px 8% 40px;
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr; /* Added back to CSS for consistency */
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.footer-brand p {
+  line-height: 1.8;
+}
+
+.footer-links {
+  list-style: none;
+}
+
+.footer-links li {
+  margin-bottom: 12px;
+}
+
+.footer-links a {
+  color: rgba(255,255,255,0.5);
+  text-decoration: none;
+  transition: var(--transition);
+  font-size: 0.9rem;
+}
+
+.footer-links a:hover {
+  color: var(--gold);
+}
+
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.social-links a {
+  color: var(--white);
+  font-size: 1.4rem;
+  transition: var(--transition);
+}
+
+.social-links a:hover {
+  color: var(--gold);
+}
+
+.bottom-bar {
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding-top: 40px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 1px;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1200px) {
+  .bento-grid { 
+    grid-template-areas: 
+      "glow glow"
+      "nad stat"
+      "science science"
+      "visual visual";
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto; 
+  }
+  .bento-item { height: 380px; }
+  .bento-3 { height: 500px; }
+  .hero-content { width: 100%; text-align: center; padding-top: 100px; }
+  .hero-image-v2 { display: none; }
+  .footer-content { grid-template-columns: 1fr 1fr; }
+}
+
+@media (max-width: 768px) {
+  :root { --section-padding: 80px 5%; }
+  .para-section { flex-direction: column; gap: 50px; }
+  .nav-links { display: none; }
+  .booking-section { flex-direction: column; margin: 0; border-radius: 20px; }
+  .booking-info { display: none; padding: 40px; }
+  .footer-content { grid-template-columns: 1fr; gap: 50px; }
+  h1 { font-size: 3.5rem !important; }
+  .bento-grid { grid-template-columns: 1fr; }
+  .bento-item { height: 350px; }
+}
