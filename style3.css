@@ -17,6 +17,13 @@
   box-sizing: border-box;
 }
 
+/* CSS fallback: elements default to visible.
+   GSAP overrides opacity/transform via JS when loaded.
+   This ensures content is never permanently hidden if GSAP CDN fails. */
+.fade-up, .fade-in {
+  opacity: 1;
+}
+
 body {
   font-family: var(--font-sans);
   background-color: var(--pure-white);

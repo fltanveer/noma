@@ -1,31 +1,54 @@
+// Safety fallback: if GSAP fails to load (e.g. CDN offline),
+// make all animated elements visible immediately.
+function ensureVisible() {
+    document.querySelectorAll('.fade-up, .fade-in').forEach(el => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+    });
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
+    // If gsap is not available (CDN timeout), fall back gracefully
+    if (typeof gsap === 'undefined') {
+        ensureVisible();
+        initInteractions();
+        return;
+    }
+
     gsap.registerPlugin(ScrollTrigger);
 
-    // Initial load animations
-    gsap.from(".fade-up", {
-        y: 40,
-        opacity: 0,
-        duration: 1.2,
-        stagger: 0.2,
-        ease: "power2.out",
-        delay: 0.1
-    });
+    // ── Hero elements: animate on load only, NOT re-triggered by scroll ──
+    const heroFadeUps = document.querySelectorAll('.hero .fade-up');
+    if (heroFadeUps.length) {
+        gsap.from(heroFadeUps, {
+            y: 40,
+            opacity: 0,
+            duration: 1.2,
+            stagger: 0.15,
+            ease: "power2.out",
+            delay: 0.1
+        });
+    }
 
-    gsap.from(".fade-in", {
-        opacity: 0,
-        duration: 1.5,
-        ease: "power2.out",
-        delay: 0.4
-    });
+    const heroFadeIns = document.querySelectorAll('.hero .fade-in');
+    if (heroFadeIns.length) {
+        gsap.from(heroFadeIns, {
+            opacity: 0,
+            duration: 1.5,
+            ease: "power2.out",
+            delay: 0.3
+        });
+    }
 
-    // Scroll animations
-    const fadeUps = document.querySelectorAll('.fade-up');
-    fadeUps.forEach((elem) => {
+    // ── All other fade-up / fade-in elements: scroll-triggered only ──
+    document.querySelectorAll('.fade-up:not(.hero .fade-up)').forEach((elem) => {
         gsap.from(elem, {
             scrollTrigger: {
                 trigger: elem,
-                start: "top 85%",
-                once: true
+                start: "top 88%",
+                once: true,
+                toggleActions: "play none none none"
             },
             y: 40,
             opacity: 0,
@@ -34,25 +57,43 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Navbar interaction
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-            nav.style.boxShadow = "0 10px 30px rgba(0,0,0,0.03)";
-        } else {
-            nav.style.boxShadow = "none";
-        }
+    document.querySelectorAll('.fade-in:not(.hero .fade-in)').forEach((elem) => {
+        gsap.from(elem, {
+            scrollTrigger: {
+                trigger: elem,
+                start: "top 88%",
+                once: true,
+                toggleActions: "play none none none"
+            },
+            opacity: 0,
+            duration: 1.2,
+            ease: "power2.out"
+        });
     });
+
+    initInteractions();
+});
+
+function initInteractions() {
+    // Navbar scroll shadow
+    const nav = document.getElementById('navbar');
+    if (nav) {
+        window.addEventListener('scroll', () => {
+            nav.style.boxShadow = window.scrollY > 10
+                ? "0 10px 30px rgba(0,0,0,0.05)"
+                : "none";
+        });
+    }
 
     // FAQ Accordion
     const faqRows = document.querySelectorAll('.faq-row');
     faqRows.forEach(row => {
         const question = row.querySelector('.faq-question');
         const answer = row.querySelector('.faq-answer');
-        
+
         question.addEventListener('click', () => {
             const isActive = question.classList.contains('active');
-            
+
             faqRows.forEach(r => {
                 r.querySelector('.faq-question').classList.remove('active');
                 r.querySelector('.faq-answer').style.maxHeight = null;
@@ -81,13 +122,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Form logic
+    // Booking form
     const form = document.querySelector('#contact-form');
     if (form) {
         form.addEventListener('submit', (e) => {
             e.preventDefault();
             const btn = form.querySelector('button');
-            const originalText = btn.innerText;
             btn.innerText = 'Processing...';
             setTimeout(() => {
                 btn.innerText = 'Appointment Requested';
@@ -97,4 +137,4 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 1000);
         });
     }
-});
+}
