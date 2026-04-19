@@ -292,37 +292,230 @@ nav {
   line-height: 1.8;
 }
 
-/* Minimal Booking */
-.book-minimal {
-  padding: 120px 8%;
-  background: var(--nude-accent);
-  text-align: center;
+/* ══════════════════════════════
+   Redesigned Appointment Section
+   ══════════════════════════════ */
+.book-redesign {
+  padding: 100px 8%;
+  background: var(--off-white);
 }
 
-.book-form {
-  max-width: 600px;
-  margin: 0 auto;
-  background: var(--pure-white);
-  padding: 50px;
-  border-radius: 8px;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.02);
+.book-redesign-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 60px;
+  align-items: stretch;
+  min-height: 680px;
 }
 
-.minimal-input {
+/* — Left Column — */
+.book-form-col {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.book-eyebrow {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  color: var(--gold);
+  margin-bottom: 14px;
+}
+
+.book-headline h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  line-height: 1.15;
+  color: var(--charcoal);
+  margin-bottom: 18px;
+}
+
+.book-headline h2 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.book-headline p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: #888;
+  max-width: 440px;
+}
+
+/* — Form Grid — */
+.book-form-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.book-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.book-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.book-field-full {
   width: 100%;
-  padding: 15px 20px;
-  margin-bottom: 20px;
-  border: 1px solid var(--light-grey);
-  border-radius: 4px;
-  font-family: var(--font-sans);
-  font-size: 1rem;
-  background: var(--pure-white);
 }
 
-.minimal-input:focus {
+.book-field label {
+  font-size: 0.78rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--charcoal);
+}
+
+.book-field input,
+.book-field select {
+  width: 100%;
+  padding: 14px 18px;
+  border: 1px solid var(--light-grey);
+  border-radius: 6px;
+  background: var(--pure-white);
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--charcoal);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.book-field input:focus,
+.book-field select:focus {
   outline: none;
   border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.12);
 }
+
+.book-field input::placeholder { color: #bbb; }
+
+/* Custom select wrapper */
+.book-select-wrap {
+  position: relative;
+}
+
+.book-select-wrap select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 44px;
+}
+
+.book-select-wrap i {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 0.8rem;
+  pointer-events: none;
+}
+
+/* Submit Button */
+.book-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 17px 30px;
+  margin-top: 8px;
+  background: var(--charcoal);
+  color: var(--pure-white);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.35s ease, transform 0.2s ease;
+}
+
+.book-submit-btn:hover {
+  background: var(--gold);
+  transform: translateY(-2px);
+}
+
+.book-submit-btn i {
+  font-size: 0.8rem;
+  transition: transform 0.3s ease;
+}
+
+.book-submit-btn:hover i { transform: translateX(4px); }
+
+/* Privacy note */
+.book-privacy {
+  font-size: 0.75rem;
+  color: #bbb;
+  text-align: center;
+  margin-top: 6px;
+}
+
+.book-privacy a { color: var(--gold); text-decoration: none; }
+.book-privacy a:hover { text-decoration: underline; }
+
+/* — Right Column: Image — */
+.book-image-col {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  min-height: 560px;
+}
+
+.book-image-col > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 1.2s ease;
+}
+
+.book-image-col:hover > img { transform: scale(1.03); }
+
+/* Hours card overlay */
+.book-hours-card {
+  position: absolute;
+  bottom: 24px;
+  left: 24px;
+  right: 24px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 8px;
+  padding: 18px 22px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.book-hours-card i {
+  font-size: 1.2rem;
+  color: var(--gold);
+  flex-shrink: 0;
+}
+
+.book-hours-card > div {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.book-hours-card span {
+  font-size: 0.82rem;
+  color: var(--charcoal);
+  font-weight: 500;
+}
+
 
 /* Footer */
 footer {
@@ -641,7 +834,9 @@ footer {
 }
 
 @media(max-width: 900px) {
-
+  .book-redesign-inner { grid-template-columns: 1fr; }
+  .book-image-col { min-height: 360px; }
+  .book-field-row { grid-template-columns: 1fr; }
 
   .hero { flex-direction: column; height: auto; text-align: center; padding-top: 120px; }
   .hero-content { padding-right: 0; margin-bottom: 50px; }

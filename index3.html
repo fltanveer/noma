@@ -253,28 +253,83 @@
         </div>
     </section>
 
-    <section id="book" class="book-minimal fade-up">
-        <div class="section-title">
-            <span>Private Concierge</span>
-            <h2>Request Appointment</h2>
-        </div>
-        <div class="book-form">
-            <form id="contact-form">
-                <input type="text" class="minimal-input" placeholder="Patient Name" required>
-                <input type="email" class="minimal-input" placeholder="Primary Email" required>
-                <input type="tel" class="minimal-input" placeholder="Contact Number" required>
-                <select class="minimal-input" style="appearance: none; cursor: pointer;" required>
-                    <option value="" disabled selected>Select Therapy Objective</option>
-                    <option value="cyan">Cellular Hydration</option>
-                    <option value="amber">Immunity Defense</option>
-                    <option value="pink">Aesthetic Radiance</option>
-                    <option value="gold">Cognitive / Energy Enhancement</option>
-                    <option value="purple">Stress / Anxiety Reduction</option>
-                    <option value="custom">Bespoke Consultation</option>
-                </select>
-                <input type="text" class="minimal-input" placeholder="Service Postcode (London Only)" required>
-                <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Submit Request</button>
-            </form>
+    <section id="book" class="book-redesign fade-up">
+        <div class="book-redesign-inner">
+
+            <!-- Left: Form -->
+            <div class="book-form-col">
+                <div class="book-headline">
+                    <span class="book-eyebrow">Private Concierge</span>
+                    <h2>Ready to feel your best?<br><em>Book now.</em></h2>
+                    <p>Step into a new standard of wellness. Our registered nurses are available to come to your home, hotel or office — at your convenience.</p>
+                </div>
+
+                <form id="contact-form" class="book-form-grid">
+                    <div class="book-field-row">
+                        <div class="book-field">
+                            <label>First Name</label>
+                            <input type="text" placeholder="e.g. Alexandra" required>
+                        </div>
+                        <div class="book-field">
+                            <label>Last Name</label>
+                            <input type="text" placeholder="e.g. Williams" required>
+                        </div>
+                    </div>
+                    <div class="book-field-row">
+                        <div class="book-field">
+                            <label>Email Address</label>
+                            <input type="email" placeholder="your@email.com" required>
+                        </div>
+                        <div class="book-field">
+                            <label>Phone Number</label>
+                            <input type="tel" placeholder="+44 7700 000000" required>
+                        </div>
+                    </div>
+                    <div class="book-field book-field-full">
+                        <label>Select Therapy</label>
+                        <div class="book-select-wrap">
+                            <select required>
+                                <option value="" disabled selected>Choose your treatment</option>
+                                <option value="cyan">Cellular Hydration — £259</option>
+                                <option value="amber">Immunity Defense — £309</option>
+                                <option value="pink">Aesthetic Radiance — £285</option>
+                                <option value="gold">Cognitive / Energy — £309</option>
+                                <option value="purple">Stress &amp; Anxiety Relief — £295</option>
+                                <option value="custom">Bespoke Consultation</option>
+                            </select>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                    <div class="book-field-row">
+                        <div class="book-field">
+                            <label>Preferred Date</label>
+                            <input type="date" required>
+                        </div>
+                        <div class="book-field">
+                            <label>Service Postcode</label>
+                            <input type="text" placeholder="London only" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="book-submit-btn">
+                        Book an Appointment
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <p class="book-privacy">By submitting, you agree to our <a href="#">Privacy Policy</a> &amp; medical screening terms.</p>
+                </form>
+            </div>
+
+            <!-- Right: Image -->
+            <div class="book-image-col">
+                <img src="assets/images/booking-scene.png" alt="NOMA Wellness Concierge">
+                <div class="book-hours-card">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <span>Monday – Friday: 08:00 – 20:00</span>
+                        <span>Saturday – Sunday: 09:00 – 17:00</span>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
 
